@@ -13,6 +13,8 @@
 }
 
 * { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+bdi { unicode-bidi: isolate; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -72,7 +74,7 @@ h1 span { color: var(--gold); }
 .section { padding: 72px 0; border-top: 1px solid var(--border); }
 h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 32px; }
 .grid { display: grid; gap: 18px; }
-.grid.four { grid-template-columns: repeat(4, 1fr); }
+.grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .card {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 24px; transition: transform .25s, border-color .25s, background .25s;
@@ -87,10 +89,10 @@ h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 32px; }
 
 /* projects */
 .project {
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; align-items: center;
   background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-bottom: 24px;
 }
-.project.reverse { grid-template-columns: 1fr 1.2fr; }
+.project.reverse { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
 .project.reverse .project-media { order: 2; }
 .project-media img { border-radius: 12px; border: 1px solid var(--border); }
 .project-body h3 { font-size: 26px; margin: 6px 0 10px; }
@@ -98,6 +100,7 @@ h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 32px; }
 .tag { color: var(--gold) !important; font-weight: 700; font-size: 14px; margin: 0 !important; }
 .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li {
+  direction: ltr; unicode-bidi: isolate;
   font: 600 13px "Inter", sans-serif; padding: 5px 12px; border-radius: 999px;
   background: var(--card-hi); border: 1px solid var(--border); color: var(--soft);
 }
@@ -132,8 +135,8 @@ html[dir="rtl"] .msg.bot { align-self: flex-start; }
 .reveal.shown { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
-  .grid.four { grid-template-columns: repeat(2, 1fr); }
-  .project, .project.reverse { grid-template-columns: 1fr; }
+  .grid.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project, .project.reverse { grid-template-columns: minmax(0, 1fr); padding: 18px; }
   .project.reverse .project-media { order: 0; }
   .skills { grid-template-columns: 1fr; }
 }
